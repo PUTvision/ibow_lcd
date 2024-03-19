@@ -37,16 +37,17 @@ endif ()
 # Library
 add_library(lcdetector
         SHARED
-        src/lcdetector.cc
+            src/lcdetector.cc
 )
 target_link_libraries(lcdetector
         ${OpenCV_LIBRARIES}
         ${Boost_LIBRARIES}
         obindex2::obindex2
 )
-target_include_directories(lcdetector PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+target_include_directories(lcdetector
+        PUBLIC
+            $<INSTALL_INTERFACE:include>
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
 install(TARGETS lcdetector
