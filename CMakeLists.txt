@@ -17,6 +17,10 @@ endif()
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 14)
 
+if (NOT YOCTO_BUILD)
+  set(YOCTO_BUILD true)
+endif()
+
 # Printing the compiling flags
 message(STATUS "Compiler flags: ${CMAKE_CXX_FLAGS}")
 
@@ -57,10 +61,12 @@ set_target_properties(lcdetector
         "include/ibow_lcd/island.h;include/ibow_lcd/lcdetector.h"
 )
 
-target_include_directories(obindex2 PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
-)
+if (NOT ${YOCTO_BUILD})
+  target_include_directories(obindex2 PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
+  )
+endif()
 
 install(TARGETS lcdetector
         EXPORT lcdetectorConfig
