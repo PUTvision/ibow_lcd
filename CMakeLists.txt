@@ -57,6 +57,11 @@ set_target_properties(lcdetector
         "include/ibow_lcd/island.h;include/ibow_lcd/lcdetector.h"
 )
 
+target_include_directories(obindex2 PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
+)
+
 install(TARGETS lcdetector
         EXPORT lcdetectorConfig
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
