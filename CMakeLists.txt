@@ -17,7 +17,7 @@ endif()
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 14)
 
-if (NOT YOCTO_BUILD)
+if (NOT DEFINED YOCTO_BUILD)
   set(YOCTO_BUILD true)
 endif()
 
@@ -62,9 +62,9 @@ set_target_properties(lcdetector
 )
 
 if (NOT ${YOCTO_BUILD})
-  target_include_directories(obindex2 PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
+  target_include_directories(lcdetector PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
   )
 endif()
 
